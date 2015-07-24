@@ -8,7 +8,7 @@ import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundC
 
 import javax.swing.*;
 
-public class BackgroundChibiCharaConfigurable implements Configurable {// todo searchableconfigurable
+public class BackgroundChibiCharaConfigurable implements Configurable {
     private BackgroundChibiCharaApplicationSettings myBackgroundChibiApplicationSeetings;
     @Nullable
     private BackgroundChibiCharaSettingsForm form = null;
