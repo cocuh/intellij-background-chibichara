@@ -7,34 +7,61 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.event.EditorFactoryEvent;
 import com.intellij.openapi.editor.event.EditorFactoryListener;
 
-import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.border.Border;
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class EditorBackgroundListener implements EditorFactoryListener {
-    private final String filepath;
+    private final int spacing;
+    private final int margin;
+    private final java.util.List<Image> imageList;
+    private Editor editor;
+    private float alpha;
+    private JComponent editorComponent;
 
-    public EditorBackgroundListener(String filepath) {
-        this.filepath = filepath;
+    public EditorBackgroundListener(java.util.List<Image> imageList, float alpha, int spacing, int margin) {
+        this.imageList = imageList;
+        this.alpha = alpha;
+        this.spacing = spacing;
+        this.margin = margin;
     }
 
     @Override
     public void editorCreated(EditorFactoryEvent event) {
-        Editor editor = event.getEditor();
-        try{
-            editor.getContentComponent().setBorder(getBackground());
-        }catch (Exception e){
-            Notifications.Bus.notify(new Notification(
-                    "BackgroundChibiChara",
-                    e.toString(), "error loading background image",
-                    NotificationType.ERROR
-            ));
-        }
+        editor = event.getEditor();
+        editorComponent = editor.getContentComponent();
+        refreshBackground();
     }
 
     private Border getBackground() throws IOException {
-        return new BackgroundBorder(0.3f, ImageIO.read(new File(filepath)));
+        Collections.shuffle(imageList);
+        return new BackgroundImageBorder(new ArrayList<Image>(imageList), alpha, spacing, BackgroundImageBorder.Align.RIGHT, margin);
+    }
+
+    private void refreshBackground() {
+        if (editorComponent != null) {
+            try {
+                editorComponent.setBorder(getBackground());
+            } catch (Exception e) {
+                Notifications.Bus.notify(new Notification(
+                        "BackgroundChibiChara",
+                        e.toString(), "error loading background image",
+                        NotificationType.ERROR
+                ));
+            }
+        }
+    }
+
+    public void setOpacity(float alpha) {
+        this.alpha = alpha;
+        refreshBackground();
+    }
+
+    private void debug(String content) {
+        Notifications.Bus.notify(new Notification("youjo", "youjo", content, NotificationType.ERROR));
     }
 
     @Override
