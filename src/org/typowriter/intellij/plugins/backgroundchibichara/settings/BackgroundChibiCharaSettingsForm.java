@@ -1,13 +1,23 @@
 package org.typowriter.intellij.plugins.backgroundchibichara.settings;
 
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import org.typowriter.intellij.plugins.backgroundchibichara.BackgroundImageBorder;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSettings.Holder {
-    private JList jList;
+    private JList<String> jList;
     private JRadioButton alignLeft;
     private JRadioButton alignCenter;
     private JRadioButton alignRight;
@@ -16,13 +26,63 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
     private JButton addButton;
     private JPanel mainPanel;
     private JTextField fieldAlpha;
+    private JButton removeButton;
     private ButtonGroup alignGroup;
+
+    private DefaultListModel<String> filepathListModel;
 
     public BackgroundChibiCharaSettingsForm() {
         fieldSpacing.setInputVerifier(new IntegerInputVerifier());
         fieldMargin.setInputVerifier(new IntegerInputVerifier());
         fieldAlpha.setInputVerifier(new DoubleInputVerifier());
         initAlignRadioButtons();
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JFileChooser fileChooser = intiFileChooser();
+                int returnVal = fileChooser.showDialog(getComponent(), null);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File[] files = fileChooser.getSelectedFiles();
+                    List<String> filepathList = new ArrayList<String>();
+                    for (File file : files) {
+                        filepathList.add(file.getAbsolutePath());
+                        Notifications.Bus.notify(new Notification("", "", file.getAbsolutePath(), NotificationType.ERROR));
+                    }
+                    addFilepathList(filepathList);
+                }
+            }
+        });
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                removeFilePathIndexes(jList.getSelectedIndices());
+            }
+        });
+        addButton.setBorder(null);
+        removeButton.setBorder(null);
+    }
+
+    private JFileChooser intiFileChooser() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(true);
+        FileFilter filter = new FileNameExtensionFilter("image files", ImageIO.getReaderFileSuffixes());
+        fileChooser.setFileFilter(filter);
+        return fileChooser;
+    }
+
+    private void addFilepathList(List<String> filepathList) {
+        for (String filepath : filepathList) {
+            filepathListModel.addElement(filepath);
+        }
+    }
+
+    private void removeFilePathIndexes(int[] indexes) {
+        Arrays.sort(indexes);
+        for (int idx = indexes.length - 1; idx >= 0; idx--) {
+            if (idx >= 0) {
+                ((DefaultListModel) jList.getModel()).remove(indexes[idx]);
+            }
+        }
     }
 
     private void createUIComponents() {
@@ -70,6 +130,9 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
 
     @Override
     public void setSettings(BackgroundChibiCharaSettings settings) {
+        filepathListModel = new DefaultListModel<String>();
+        jList.setModel(filepathListModel);
+
         getAlignButton(settings.getAlign()).setSelected(true);
         fieldMargin.setText(String.valueOf(settings.margin));
         fieldSpacing.setText(String.valueOf(settings.spacing));

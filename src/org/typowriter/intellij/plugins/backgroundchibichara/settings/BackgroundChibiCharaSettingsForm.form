@@ -16,6 +16,7 @@
         </constraints>
         <properties>
           <enabled value="true"/>
+          <model/>
         </properties>
       </component>
       <toolbar id="1d212">
@@ -34,7 +35,14 @@
           <component id="caa80" class="javax.swing.JButton" binding="addButton">
             <constraints/>
             <properties>
-              <icon value="toolbarDecorator/add.png"/>
+              <icon value="general/add.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="f6b4c" class="javax.swing.JButton" binding="removeButton">
+            <constraints/>
+            <properties>
+              <icon value="general/remove.png"/>
               <text value=""/>
             </properties>
           </component>
