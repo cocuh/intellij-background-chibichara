@@ -2,16 +2,17 @@
     <id>org.typowriter.intellij.plugins.backgroundchibichara</id>
     <name>BackgroundChibiCharaPlugin</name>
     <version>1.0</version>
-    <vendor email="cocuh.kk@gmail.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="cocuh.kk@gmail.com" url="https://github.com/cocuh/intellij-background-chibichara">cocuh</vendor>
 
     <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+        drawing plugin chibichara, like wallpaper
     ]]></description>
 
     <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+        <dl>
+        <dt>1.0</dt>
+        <dd>implement minimum specification</dd>
+        </dl>
     ]]>
     </change-notes>
 
