@@ -9,10 +9,18 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaSettings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @State(name = "BackgroundChibiCharaApplicationSettings", storages = @Storage(file = StoragePathMacros.APP_CONFIG + "/backgroundChibiChara.xml"))
 public class BackgroundChibiCharaApplicationSettings implements PersistentStateComponent<BackgroundChibiCharaApplicationSettings.State>,
         BackgroundChibiCharaSettings.Holder {
-    State myState = new State();
+    private static List<SettingChangeListener> listenerList = new ArrayList<SettingChangeListener>();
+    private State myState = new State();
+
+    public static void addSettingChangeListener(SettingChangeListener listener) {
+        listenerList.add(listener);
+    }
 
     @Nullable
     @Override
@@ -34,6 +42,13 @@ public class BackgroundChibiCharaApplicationSettings implements PersistentStateC
     @Override
     public void setSettings(@NotNull BackgroundChibiCharaSettings settings) {
         myState.mySettings = settings;
+        for (SettingChangeListener listener : listenerList) {
+            listener.onChange(settings);
+        }
+    }
+
+    public interface SettingChangeListener {
+        void onChange(BackgroundChibiCharaSettings settings);
     }
 
     public static class State {

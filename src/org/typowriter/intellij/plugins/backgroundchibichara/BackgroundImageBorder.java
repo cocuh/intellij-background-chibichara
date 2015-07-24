@@ -11,7 +11,7 @@ public class BackgroundImageBorder implements Border {
     private final int margin;
     private final Align align;
 
-    BackgroundImageBorder(List<Image> imageList, double alpha, int spacing, Align align, int margin) {
+    BackgroundImageBorder(List<Image> imageList, Align align, int spacing, int margin, double alpha) {
         this.imageList = imageList;
         this.alpha = alpha;
         this.spacing = spacing;

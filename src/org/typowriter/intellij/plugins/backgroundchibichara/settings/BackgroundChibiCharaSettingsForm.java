@@ -29,8 +29,6 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
     private JButton removeButton;
     private ButtonGroup alignGroup;
 
-    private DefaultListModel<String> filepathListModel;
-
     public BackgroundChibiCharaSettingsForm() {
         fieldSpacing.setInputVerifier(new IntegerInputVerifier());
         fieldMargin.setInputVerifier(new IntegerInputVerifier());
@@ -72,7 +70,7 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
 
     private void addFilepathList(List<String> filepathList) {
         for (String filepath : filepathList) {
-            filepathListModel.addElement(filepath);
+            ((DefaultListModel) jList.getModel()).addElement(filepath);
         }
     }
 
@@ -130,8 +128,11 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
 
     @Override
     public void setSettings(BackgroundChibiCharaSettings settings) {
-        filepathListModel = new DefaultListModel<String>();
-        jList.setModel(filepathListModel);
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        for (String path : settings.filepathList) {
+            listModel.addElement(path);
+        }
+        jList.setModel(listModel);
 
         getAlignButton(settings.getAlign()).setSelected(true);
         fieldMargin.setText(String.valueOf(settings.margin));

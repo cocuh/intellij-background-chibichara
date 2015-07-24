@@ -1,10 +1,10 @@
-package org.typowriter.intellij.plugins.backgroundchibichara.settings;
+package org.typowriter.intellij.plugins.backgroundchibichara;
 
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
-import org.typowriter.intellij.plugins.backgroundchibichara.BackgroundChibiCharaApplicationSettings;
+import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaSettingsForm;
 
 import javax.swing.*;
 
@@ -20,7 +20,7 @@ public class BackgroundChibiCharaConfigurable implements Configurable {// todo s
     @Nls
     @Override
     public String getDisplayName() {
-        return "Settings.BackgroundChibiChara";
+        return "BackgroundChibiChara";
     }
 
     @Nullable
