@@ -19,10 +19,10 @@ public class EditorBackgroundListener implements EditorFactoryListener {
     private final int margin;
     private final java.util.List<Image> imageList;
     private Editor editor;
-    private float alpha;
+    private double alpha;
     private JComponent editorComponent;
 
-    public EditorBackgroundListener(java.util.List<Image> imageList, float alpha, int spacing, int margin) {
+    public EditorBackgroundListener(java.util.List<Image> imageList, double alpha, int spacing, int margin) {
         this.imageList = imageList;
         this.alpha = alpha;
         this.spacing = spacing;
@@ -53,11 +53,6 @@ public class EditorBackgroundListener implements EditorFactoryListener {
                 ));
             }
         }
-    }
-
-    public void setOpacity(float alpha) {
-        this.alpha = alpha;
-        refreshBackground();
     }
 
     private void debug(String content) {

@@ -26,6 +26,10 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationConfigurable
+                instance="org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaConfigurable"/>
+        <applicationService
+                serviceImplementation="org.typowriter.intellij.plugins.backgroundchibichara.BackgroundChibiCharaApplicationSettings"/>
     </extensions>
 
     <application-components>

@@ -5,6 +5,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.editor.EditorFactory;
 import org.jetbrains.annotations.NotNull;
+import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaConfigurable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BackgroundChibiCharaPlugin implements ApplicationComponent {
-    private BackgroundChibiCharaConfiguration theConfiguration;
-    private BackgroundChibiCharaConfigurationPanel userInterface;
+    public static final String COMPONENT_NAME = "BackgroundChibiCharaPlugin";
+    BackgroundChibiCharaConfigurable theConfiguration;
     private EditorBackgroundListener backgroundListener;
 
     public BackgroundChibiCharaPlugin() {
@@ -25,35 +26,31 @@ public class BackgroundChibiCharaPlugin implements ApplicationComponent {
     @Override
     public void initComponent() {
         Application application = ApplicationManager.getApplication();
-//        theConfiguration =(BackgroundChibiCharaConfiguration) application.getComponent(BackgroundChibiCharaConfiguration.class);
-        List<Image> images = null;
-        try {
-            images = getImages("");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (images != null) {
-            backgroundListener = new EditorBackgroundListener(
-                    images,
-                    0.3f,
-                    30,
-                    30
-            );
-        }
+        theConfiguration = application.getComponent(BackgroundChibiCharaConfigurable.class);
 
-//        if(theConfiguration.enabled){
+        List<Image> images = getImages();
+        backgroundListener = new EditorBackgroundListener(
+                images,
+                0.3,
+                30,
+                30
+        );
+
         EditorFactory.getInstance().addEditorFactoryListener(backgroundListener); // fixme: duplicated method
-//        }
     }
 
     @Override
     public void disposeComponent() {
     }
 
-    public List<Image> getImages(String direcotryPath) throws IOException {
+    public List<Image> getImages() {
         ArrayList<Image> images = new ArrayList<Image>();
-        images.add(ImageIO.read(new File("/home/cocu/Dropbox/etc/icons/chibit_stern/chibit_stern.png")));
-        images.add(ImageIO.read(new File("/home/cocu/picture/wallpaper/wo-class2-.png")));
+        try {
+            images.add(ImageIO.read(new File("/home/cocu/Dropbox/etc/icons/chibit_stern/chibit_stern.png")));
+            images.add(ImageIO.read(new File("/home/cocu/picture/wallpaper/wo-class2-.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return images;
     }
 
@@ -61,6 +58,6 @@ public class BackgroundChibiCharaPlugin implements ApplicationComponent {
     @NotNull
     @Override
     public String getComponentName() {
-        return "BackgroundChibiCharaPlugin";
+        return COMPONENT_NAME;
     }
 }
