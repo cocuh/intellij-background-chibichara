@@ -37,7 +37,7 @@ public class BackgroundChibiCharaConfigurable implements Configurable {
 
     @Override
     public boolean isModified() {
-        return myBackgroundChibiApplicationSeetings.getSettings().equals(getForm().getSettings());
+        return !myBackgroundChibiApplicationSeetings.getSettings().equals(getForm().getSettings());
     }
 
     @Override
