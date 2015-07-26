@@ -1,6 +1,8 @@
 intellij-BackgroundChibiChara
 =============================
 
+https://plugins.jetbrains.com/plugin/7878
+
 what's this
 -----------
 クソコードを見ながら開発しているとどうしても心の癒やしが足らなくなると思います。  
@@ -9,7 +11,7 @@ what's this
 でも壁紙みたいにコテコテしてるといやだし、左側にちょっとって感じでいいんだよね。  
 ということで作ったのがこのpluginです✌
 
-when i write and read f*ckin code, i am always short of cute anime girl ingredients.
+when i write and read f\*ckin code, i am always short of cute anime girl ingredients.
 i want to see the cute ones(not watch).
 
 i don't want to decorate IDE, such as wallpaper. i want to grace it, like one flower on table. this plugin enable it!
