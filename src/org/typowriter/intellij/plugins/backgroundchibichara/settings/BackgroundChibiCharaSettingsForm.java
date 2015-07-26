@@ -129,15 +129,15 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
     @Override
     public void setSettings(BackgroundChibiCharaSettings settings) {
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        for (String path : settings.filepathList) {
+        for (String path : settings.getFilepathList()) {
             listModel.addElement(path);
         }
         jList.setModel(listModel);
 
         getAlignButton(settings.getAlign()).setSelected(true);
-        fieldMargin.setText(String.valueOf(settings.margin));
-        fieldSpacing.setText(String.valueOf(settings.spacing));
-        fieldAlpha.setText(String.valueOf(settings.alpha));
+        fieldMargin.setText(String.valueOf(settings.getMargin()));
+        fieldSpacing.setText(String.valueOf(settings.getSpacing()));
+        fieldAlpha.setText(String.valueOf(settings.getAlpha()));
     }
 
     private List<String> getFilepathList() {

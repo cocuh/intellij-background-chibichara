@@ -47,9 +47,9 @@ public class EditorBackgroundListener implements EditorFactoryListener,
     private void setParams(BackgroundChibiCharaSettings settings) {
         this.imageList = getImages(settings.getFilepathList());
         this.align = settings.getAlign();
-        this.alpha = settings.alpha;
-        this.spacing = settings.spacing;
-        this.margin = settings.margin;
+        this.alpha = settings.getAlpha();
+        this.spacing = settings.getSpacing();
+        this.margin = settings.getMargin();
     }
 
     @Override
