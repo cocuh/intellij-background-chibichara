@@ -38,6 +38,19 @@ public class BackgroundChibiCharaSettings {
         return new ArrayList<String>(filepathList);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BackgroundChibiCharaSettings)) {
+            return false;
+        }
+        BackgroundChibiCharaSettings otherSettings = (BackgroundChibiCharaSettings) obj;
+        return filepathList.equals(otherSettings.filepathList)
+                & alignId == otherSettings.alignId
+                & margin == otherSettings.margin
+                & spacing == otherSettings.spacing
+                & alpha == otherSettings.alpha;
+    }
+
     public interface Holder {
         @NotNull
         BackgroundChibiCharaSettings getSettings();
