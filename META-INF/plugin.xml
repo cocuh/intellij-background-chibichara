@@ -2,20 +2,19 @@
     <id>org.typowriter.intellij.plugins.backgroundchibichara</id>
     <name>BackgroundChibiChara</name>
     <category>UI</category>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <vendor email="cocuh.kk@gmail.com" url="https://github.com/cocuh/intellij-background-chibichara">cocuh</vendor>
 
     <description><![CDATA[
         drawing chibi-chara(small cute anime character) images, similar to wallpaper
-
-        <br/><img src="https://raw.githubusercontent.com/wiki/cocuh/intellij-background-chibichara/screenshot/screenshot1-small.jpg"></img>
-        <br/>(not included these chibi-chara images. you can set chibi-chara(s) by yourself!)
-        <br/>
-        <br/>if you want to search such images, google "ちびキャラ" or search this word in pixiv(japanese most famous illustrator community).
     ]]></description>
 
     <change-notes><![CDATA[
         <dl>
+        <dt>1.0.3</dt>
+        <dd>clean description</dd>
+        <dt>1.0.2</dt>
+        <dd>fix description layout</dd>
         <dt>1.0.1</dt>
         <dd>improve descriptions</dd>
         <dt>1.0</dt>
