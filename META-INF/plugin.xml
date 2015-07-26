@@ -6,9 +6,12 @@
     <vendor email="cocuh.kk@gmail.com" url="https://github.com/cocuh/intellij-background-chibichara">cocuh</vendor>
 
     <description><![CDATA[
-        drawing chibi-chara(small cute anime character) image, similar to wallpaper
+        drawing chibi-chara(small cute anime character) images, similar to wallpaper
 
-        ![screenshot](https://raw.githubusercontent.com/wiki/cocuh/intellij-background-chibichara/screenshot/screenshot1.jpg)
+        <br/><img src="https://raw.githubusercontent.com/wiki/cocuh/intellij-background-chibichara/screenshot/screenshot1-small.jpg"></img>
+        <br/>(not included these chibi-chara images. you can set chibi-chara(s) by yourself!)
+        <br/>
+        <br/>if you want to search such images, google "ちびキャラ" or search this word in pixiv(japanese most famous illustrator community).
     ]]></description>
 
     <change-notes><![CDATA[
