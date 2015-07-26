@@ -25,9 +25,9 @@ public class BackgroundChibiCharaSettings {
     public BackgroundChibiCharaSettings() {
         this.filepathList = new ArrayList<String>();
         this.alignId = BackgroundImageBorder.Align.RIGHT.id;
-        this.margin = 10;
-        this.spacing = 30;
-        this.alpha = 0.3;
+        this.margin = 50;
+        this.spacing = 300;
+        this.alpha = 0.15;
     }
 
     public BackgroundImageBorder.Align getAlign() {
