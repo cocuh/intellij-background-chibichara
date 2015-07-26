@@ -1,6 +1,7 @@
 <idea-plugin version="2">
     <id>org.typowriter.intellij.plugins.backgroundchibichara</id>
     <name>BackgroundChibiCharaPlugin</name>
+    <category>Editor</category>
     <version>1.0</version>
     <vendor email="cocuh.kk@gmail.com" url="https://github.com/cocuh/intellij-background-chibichara">cocuh</vendor>
 
