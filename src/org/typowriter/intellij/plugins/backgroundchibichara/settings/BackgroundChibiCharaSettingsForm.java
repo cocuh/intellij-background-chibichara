@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSettings.Holder {
-    private JList<String> jList;
+    private JList jList;
     private JRadioButton alignLeft;
     private JRadioButton alignCenter;
     private JRadioButton alignRight;
@@ -128,7 +128,7 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
 
     @Override
     public void setSettings(BackgroundChibiCharaSettings settings) {
-        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        DefaultListModel listModel = new DefaultListModel();
         for (String path : settings.getFilepathList()) {
             listModel.addElement(path);
         }

@@ -2,7 +2,7 @@
     <id>org.typowriter.intellij.plugins.backgroundchibichara</id>
     <name>BackgroundChibiChara</name>
     <category>UI</category>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <vendor email="cocuh.kk@gmail.com" url="https://github.com/cocuh/intellij-background-chibichara">cocuh</vendor>
 
     <description><![CDATA[
@@ -11,6 +11,8 @@
 
     <change-notes><![CDATA[
         <dl>
+        <dt>1.0.5</dt>
+        <dd>compile on jdk6</dd>
         <dt>1.0.4</dt>
         <dd>validate alpha value</dd>
         <dt>1.0.3</dt>
@@ -39,7 +41,6 @@
         <applicationService
                 serviceImplementation="org.typowriter.intellij.plugins.backgroundchibichara.BackgroundChibiCharaApplicationSettings"/>
     </extensions>
-
     <application-components>
         <!-- Add your application components here -->
         <component>
