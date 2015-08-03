@@ -5,7 +5,6 @@ import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.editor.EditorFactory;
 import org.jetbrains.annotations.NotNull;
-import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaSettings;
 
 public class BackgroundChibiCharaPlugin implements ApplicationComponent {
     public static final String COMPONENT_NAME = "BackgroundChibiCharaPlugin";
@@ -19,7 +18,7 @@ public class BackgroundChibiCharaPlugin implements ApplicationComponent {
     @Override
     public void initComponent() {
         applicationSettings = ServiceManager.getService(BackgroundChibiCharaApplicationSettings.class);
-        BackgroundChibiCharaSettings settings = applicationSettings.getSettings();
+        BackgroundChibiCharaSettings settings = applicationSettings.getState();
         backgroundListener = new EditorBackgroundListener(settings);
         applicationSettings.addSettingChangeListener(backgroundListener);
 

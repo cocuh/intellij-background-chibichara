@@ -3,8 +3,8 @@ package org.typowriter.intellij.plugins.backgroundchibichara;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaSettingsForm;
 
 import javax.swing.*;
 
@@ -42,7 +42,7 @@ public class BackgroundChibiCharaConfigurable implements Configurable {
 
     @Override
     public void apply() throws ConfigurationException {
-        myBackgroundChibiApplicationSeetings.setSettings(getForm().getSettings());
+        myBackgroundChibiApplicationSeetings.updateSettings(getForm().getSettings());
     }
 
     @Override
@@ -55,7 +55,7 @@ public class BackgroundChibiCharaConfigurable implements Configurable {
         form = null;
     }
 
-    @Nullable
+    @NotNull
     public BackgroundChibiCharaSettingsForm getForm() {
         if (form == null) {
             form = new BackgroundChibiCharaSettingsForm();

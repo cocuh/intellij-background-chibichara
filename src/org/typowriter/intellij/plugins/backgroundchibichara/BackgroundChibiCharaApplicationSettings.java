@@ -7,16 +7,14 @@ import com.intellij.openapi.components.StoragePathMacros;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaSettings;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@State(name = "BackgroundChibiCharaApplicationSettings", storages = @Storage(file = StoragePathMacros.APP_CONFIG + "/backgroundChibiChara.xml"))
-public class BackgroundChibiCharaApplicationSettings implements PersistentStateComponent<BackgroundChibiCharaApplicationSettings.State>,
-        BackgroundChibiCharaSettings.Holder {
+@State(name = "BackgroundChibiCharaApplicationBackgroundChibiCharaSettings", storages = @Storage(file = StoragePathMacros.APP_CONFIG + "/backgroundChibiChara.xml"))
+public class BackgroundChibiCharaApplicationSettings implements PersistentStateComponent<BackgroundChibiCharaSettings> {
     private static List<SettingChangeListener> listenerList = new ArrayList<SettingChangeListener>();
-    private State myState = new State();
+    private BackgroundChibiCharaSettings mySettings = new BackgroundChibiCharaSettings();
 
     public static void addSettingChangeListener(SettingChangeListener listener) {
         listenerList.add(listener);
@@ -24,24 +22,26 @@ public class BackgroundChibiCharaApplicationSettings implements PersistentStateC
 
     @Nullable
     @Override
-    public State getState() {
-        return myState;
+    public BackgroundChibiCharaSettings getState() {
+        return mySettings;
     }
 
     @Override
-    public void loadState(State state) {
-        XmlSerializerUtil.copyBean(state, myState);
+    public void loadState(BackgroundChibiCharaSettings settings) {
+        XmlSerializerUtil.copyBean(settings, mySettings);
     }
 
     @NotNull
-    @Override
-    public BackgroundChibiCharaSettings getSettings() {
-        return myState.mySettings;
+    public BackgroundChibiCharaSettings getBackgroundChibiCharaSettings() {
+        return mySettings;
     }
 
-    @Override
-    public void setSettings(@NotNull BackgroundChibiCharaSettings settings) {
-        myState.mySettings = settings;
+    public BackgroundChibiCharaSettings getSettings() {
+        return mySettings;
+    }
+
+    public void updateSettings(BackgroundChibiCharaSettings settings) {
+        this.mySettings = settings;
         for (SettingChangeListener listener : listenerList) {
             listener.onChange(settings);
         }
@@ -49,9 +49,5 @@ public class BackgroundChibiCharaApplicationSettings implements PersistentStateC
 
     public interface SettingChangeListener {
         void onChange(BackgroundChibiCharaSettings settings);
-    }
-
-    public static class State {
-        public BackgroundChibiCharaSettings mySettings = BackgroundChibiCharaSettings.DEFAULT;
     }
 }

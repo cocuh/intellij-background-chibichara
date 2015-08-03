@@ -1,9 +1,8 @@
-package org.typowriter.intellij.plugins.backgroundchibichara.settings;
+package org.typowriter.intellij.plugins.backgroundchibichara;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
-import org.typowriter.intellij.plugins.backgroundchibichara.BackgroundImageBorder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSettings.Holder {
+public class BackgroundChibiCharaSettingsForm {
     private JList jList;
     private JRadioButton alignLeft;
     private JRadioButton alignCenter;
@@ -114,7 +113,6 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
         }
     }
 
-    @Override
     public BackgroundChibiCharaSettings getSettings() {
         List<String> filepathList = getFilepathList();
         return new BackgroundChibiCharaSettings(
@@ -126,18 +124,17 @@ public class BackgroundChibiCharaSettingsForm implements BackgroundChibiCharaSet
         );
     }
 
-    @Override
     public void setSettings(BackgroundChibiCharaSettings settings) {
         DefaultListModel listModel = new DefaultListModel();
-        for (String path : settings.getFilepathList()) {
+        for (String path : settings.filepathList) {
             listModel.addElement(path);
         }
         jList.setModel(listModel);
 
-        getAlignButton(settings.getAlign()).setSelected(true);
-        fieldMargin.setText(String.valueOf(settings.getMargin()));
-        fieldSpacing.setText(String.valueOf(settings.getSpacing()));
-        fieldAlpha.setText(String.valueOf(settings.getAlpha()));
+        getAlignButton(settings.align).setSelected(true);
+        fieldMargin.setText(String.valueOf(settings.margin));
+        fieldSpacing.setText(String.valueOf(settings.spacing));
+        fieldAlpha.setText(String.valueOf(settings.alpha));
     }
 
     private List<String> getFilepathList() {

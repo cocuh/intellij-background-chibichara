@@ -6,7 +6,6 @@ import com.intellij.notification.Notifications;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.event.EditorFactoryEvent;
 import com.intellij.openapi.editor.event.EditorFactoryListener;
-import org.typowriter.intellij.plugins.backgroundchibichara.settings.BackgroundChibiCharaSettings;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -45,11 +44,20 @@ public class EditorBackgroundListener implements EditorFactoryListener,
     }
 
     private void setParams(BackgroundChibiCharaSettings settings) {
-        this.imageList = getImages(settings.getFilepathList());
-        this.align = settings.getAlign();
-        this.alpha = settings.getAlpha();
-        this.spacing = settings.getSpacing();
-        this.margin = settings.getMargin();
+        this.imageList = getImages(settings.filepathList);
+        this.align = settings.align;
+        this.alpha = validateAlpha(settings.alpha);
+        this.spacing = settings.spacing;
+        this.margin = settings.margin;
+    }
+
+    private double validateAlpha(double alpha) {
+        if (alpha < 0) {
+            alpha = 0;
+        } else if (alpha > 1.0) {
+            alpha = 1;
+        }
+        return alpha;
     }
 
     @Override
